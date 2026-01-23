@@ -1,0 +1,34 @@
+.button-primary {
+  background: #2563eb;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  background: #1d4ed8;
+}
+
+.button-dzial {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #e5e7eb;
+}
+
+.button-dzial.active {
+  background: #2563eb;
+  color: white;
+}
+
+.mt {
+  margin-top: 10px;
+}
+
+.dzialy {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}

@@ -1,0 +1,93 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.zadanie {
+  position: relative;
+}
+
+.question {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.answer {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s;
+  pointer-events: auto;
+}
+
+.answer:hover {
+  background: #e0f2fe;
+}
+
+.answer.correct {
+  background: #22c55e;
+  color: white;
+}
+
+.answer.wrong {
+  background: #fb923c;
+  color: white;
+}
+
+.feedback {
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.premium-info {
+  margin-top: 10px;
+  color: #ef4444;
+  font-weight: 500;
+}
+
+.solution {
+  margin-top: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.video {
+  margin-top: 10px;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+.video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
