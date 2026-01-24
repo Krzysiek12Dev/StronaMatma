@@ -1,0 +1,89 @@
+/* Podstawowy wygląd sidebaru */
+.sidebar {
+  width: 220px;
+  background-color: #f3f4f6;
+  padding: 16px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  position: relative; /* ważne dla zamykania */
+}
+
+/* Zamknięty sidebar */
+.sidebar.closed {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* Zamknij przycisk */
+.button-close {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-bottom: 12px;
+}
+
+/* Hamburger na mały ekran */
+.button-hamburger {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Listy w sidebar */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.sidebar li {
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sidebar li.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+/* Nagłówki */
+.sidebar h3 {
+  margin-bottom: 8px;
+}
+
+/* Media Queries dla małych ekranów */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 999;
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  .sidebar.closed {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  .sidebar:not(.closed) {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

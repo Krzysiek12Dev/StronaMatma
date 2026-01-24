@@ -2,20 +2,24 @@
 
 import { useState, useEffect } from "react";
 import ZadanieABCD from "../components/ZadanieABCD";
+import Sidebar from "../components/Sidebar";
 import Button from "../components/Button";
 import { zadania } from "../data/zadania";
 import "../styles/buttons.css";
 import "../styles/cards.css";
+import "../styles/sidebar.css";
 
 interface User {
   name: string;
   isPremium: boolean;
 }
 
-export default function Home() {
+export default function Page() {
   const [selectedDzial, setSelectedDzial] = useState("Algebra");
+  const [selectedLevel, setSelectedLevel] = useState("Liceum");
   const [user, setUser] = useState<User | null>(null);
   const [visibleSolutions, setVisibleSolutions] = useState<Record<number, boolean>>({});
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // kontrola sidebaru
 
   /* ------------------ LOGOWANIE ------------------ */
   useEffect(() => {
@@ -36,109 +40,115 @@ export default function Home() {
     localStorage.removeItem("user");
   };
 
-  /* ------------------ ZADANIA ------------------ */
+  /* ------------------ FILTRY ------------------ */
   const dzialy = Array.from(new Set(zadania.map(z => z.dzial)));
-  const zadaniaDoWyswietlenia = zadania.filter(z => z.dzial === selectedDzial);
+  const levels = Array.from(new Set(zadania.map(z => z.level)));
+
+  const filteredZadania = zadania.filter(
+    z => z.dzial === selectedDzial && z.level === selectedLevel
+  );
 
   const toggleSolution = (id: number) => {
     setVisibleSolutions(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
   return (
-    <main className="container">
-      <h1 className="title">Matura – kurs matematyki</h1>
+    <main className="container" style={{ display: "flex", gap: "24px" }}>
+      {/* HAMBURGER do otwierania sidebaru na małych ekranach */}
+      {!isSidebarOpen && (
+        <button className="hamburger" onClick={() => setIsSidebarOpen(true)}>
+          ☰
+        </button>
+      )}
 
-      {/* ======= PASEK LOGOWANIA ======= */}
-      <div style={{ textAlign: "center", marginBottom: "24px" }}>
-        {user ? (
-          <>
-            <p>
-              Witaj, <strong>{user.name}</strong>{" "}
-              {userIsPremium ? "⭐ PREMIUM" : ""}
-            </p>
+      {/* SIDEBAR */}
+      <Sidebar
+        dzialy={dzialy}
+        levels={levels}
+        selectedDzial={selectedDzial}
+        selectedLevel={selectedLevel}
+        setSelectedDzial={setSelectedDzial}
+        setSelectedLevel={setSelectedLevel}
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
+      />
 
-            {!userIsPremium && (
-              <Button className="button-primary" onClick={handleKupDostep}>
-                🔓 Kup dostęp premium
-              </Button>
-            )}
+      {/* GŁÓWNA TREŚĆ */}
+      <div style={{ flex: 1 }}>
+        <h1 className="title">Skuteczna matma</h1>
 
-            <Button
-              className="button-primary"
-              onClick={handleWyloguj}
-              style={{ backgroundColor: "#ef4444", marginLeft: "8px" }}
-            >
-              🚪 Wyloguj
-            </Button>
-          </>
-        ) : (
-          <Button className="button-primary" onClick={handleKupDostep}>
-            📝 Załóż konto i kup dostęp
-          </Button>
-        )}
-      </div>
-
-      {/* ======= DZIAŁY ======= */}
-      <div className="dzialy">
-        {dzialy.map(dz => (
-          <Button
-            key={dz}
-            className={`button-dzial ${dz === selectedDzial ? "active" : ""}`}
-            onClick={() => setSelectedDzial(dz)}
-          >
-            {dz}
-          </Button>
-        ))}
-      </div>
-
-      {/* ======= ZADANIA ======= */}
-      {zadaniaDoWyswietlenia.map(zad => {
-        const isVisible = visibleSolutions[zad.id] ?? false;
-        const canSeeSolution = !zad.isPremium || userIsPremium;
-
-        return (
-          <div key={zad.id} className="card">
-            <ZadanieABCD
-              question={zad.question}
-               image={zad.image}
-              options={zad.options}
-              correct={zad.correct}
-            />
-
-            {/* INFO PREMIUM */}
-            {zad.isPremium && !userIsPremium && (
-              <p className="premium-info">
-                🔒 To zadanie ma rozwiązanie premium
+        {/* LOGOWANIE */}
+        <div style={{ textAlign: "center", marginBottom: "24px" }}>
+          {user ? (
+            <>
+              <p>
+                Witaj, <strong>{user.name}</strong> {userIsPremium ? "⭐ PREMIUM" : ""}
               </p>
-            )}
 
-            {/* PRZYCISK */}
-            {canSeeSolution && (
+              {!userIsPremium && (
+                <Button className="button-primary" onClick={handleKupDostep}>
+                  🔓 Kup dostęp premium
+                </Button>
+              )}
+
               <Button
-                className="button-primary mt"
-                onClick={() => toggleSolution(zad.id)}
+                className="button-primary"
+                onClick={handleWyloguj}
+                style={{ backgroundColor: "#ef4444", marginLeft: "8px" }}
               >
-                {isVisible ? "🔽 Ukryj rozwiązanie" : "🔼 Pokaż rozwiązanie"}
+                🚪 Wyloguj
               </Button>
-            )}
+            </>
+          ) : (
+            <Button className="button-primary" onClick={handleKupDostep}>
+              📝 Załóż konto i kup dostęp
+            </Button>
+          )}
+        </div>
 
-            {/* ROZWIJANE ROZWIĄZANIE */}
-            {isVisible && canSeeSolution && (
-              <div className="solution">
-                <p>{zad.solutionText}</p>
+        {/* ZADANIA */}
+        {filteredZadania.map(zad => {
+          const isVisible = visibleSolutions[zad.id] ?? false;
+          const canSeeSolution = !zad.isPremium || userIsPremium;
 
-                <div className="video">
-                  <iframe
-                    src={zad.solutionVideo}
-                    title="Rozwiązanie"
-                    allowFullScreen
-                  />
+          return (
+            <div key={zad.id} className="card">
+              <ZadanieABCD
+                question={zad.question}
+                image={zad.image}
+                options={zad.options}
+                correct={zad.correct}
+              />
+
+              {zad.isPremium && !userIsPremium && (
+                <p className="premium-info">🔒 To zadanie ma rozwiązanie premium</p>
+              )}
+
+              {canSeeSolution && (
+                <Button
+                  className="button-primary mt"
+                  onClick={() => toggleSolution(zad.id)}
+                >
+                  {isVisible ? "🔽 Ukryj rozwiązanie" : "🔼 Pokaż rozwiązanie"}
+                </Button>
+              )}
+
+              {isVisible && canSeeSolution && (
+                <div className="solution">
+                  <p>{zad.solutionText}</p>
+                  <div className="video">
+                    <iframe
+                      src={zad.solutionVideo}
+                      title="Rozwiązanie"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        );
-      })}
+              )}
+            </div>
+          );
+        })}
+      </div>
     </main>
   );
 }

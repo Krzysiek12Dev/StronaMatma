@@ -1,34 +1,24 @@
-.button-primary {
-  background: #2563eb;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 8px;
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
   border: none;
   cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  color: white;
+  background-color: #3b82f6;
 }
 
-.button-primary:hover {
-  background: #1d4ed8;
+.button:hover {
+  background-color: #2563eb;
 }
 
-.button-dzial {
-  padding: 8px 14px;
-  border-radius: 8px;
-  background: #e5e7eb;
+.button-primary {
+  display: flex;
+  margin-top: 10px;
+  background-color: #3b82f6;
 }
 
 .button-dzial.active {
-  background: #2563eb;
-  color: white;
-}
-
-.mt {
-  margin-top: 10px;
-}
-
-.dzialy {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 24px;
+  background-color: #2563eb;
 }
