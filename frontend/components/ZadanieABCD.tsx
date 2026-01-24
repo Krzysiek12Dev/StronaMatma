@@ -5,32 +5,36 @@ import "../styles/cards.css";
 
 interface Props {
   question: string;
+  image?: string;
   options: string[];
   correct: number;
 }
 
-export default function ZadanieABCD({ question, options, correct }: Props) {
+export default function ZadanieABCD({ question, image, options, correct }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
 
   return (
+    
     <div className="zadanie">
       <p className="question">{question}</p>
+      
+
+      {image && (
+        <div className="task-image">
+          <img src={image} alt="Ilustracja do zadania" />
+        </div>
+      )}
 
       <div className="answers">
         {options.map((opt, idx) => {
           let className = "answer";
-
           if (selected !== null) {
             if (idx === correct) className += " correct";
             else if (idx === selected) className += " wrong";
           }
 
           return (
-            <button
-              key={idx}
-              className={className}
-              onClick={() => setSelected(idx)}
-            >
+            <button key={idx} className={className} onClick={() => setSelected(idx)}>
               {opt}
             </button>
           );
@@ -43,5 +47,9 @@ export default function ZadanieABCD({ question, options, correct }: Props) {
         </p>
       )}
     </div>
+    
   );
+
+ 
+
 }

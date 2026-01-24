@@ -100,6 +100,7 @@ export default function Home() {
           <div key={zad.id} className="card">
             <ZadanieABCD
               question={zad.question}
+               image={zad.image}
               options={zad.options}
               correct={zad.correct}
             />
