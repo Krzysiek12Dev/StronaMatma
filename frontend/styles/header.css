@@ -1,0 +1,105 @@
+/* =========================
+   HEADER – BAZA
+========================= */
+.header {
+  position: sticky;
+  height: 60px;
+  top: 0;
+  z-index: 900;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  
+}
+
+/* =========================
+   WNĘTRZE
+========================= */
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative; /* dla absolutnego pozycjonowania nav i logo */
+
+  display: flex;
+  align-items: center;
+  justify-content: center; /* logo zawsze na środku */
+  padding: 12px 16px;
+}
+
+/* =========================
+   LOGO
+========================= */
+.header-logo {
+  position: absolute;
+  left: 50%;
+  top:20%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2563eb;
+  text-decoration: none;
+
+}
+
+/* =========================
+   NAWIGACJA
+========================= */
+.nav {
+  position: absolute;
+  right: 16px; /* po prawej stronie headera */
+  display: flex;
+  gap: 16px;
+  /* background-color: green; */
+  margin-top: 20px;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #374151;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 12px;
+}
+
+.nav a:hover {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+/* =========================
+   RESPONSYWNOŚĆ
+========================= */
+@media (max-width: 768px) {
+  .nav {
+    gap: 8px;
+    right: 8px;
+  }
+
+  .nav a {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+}
+
+/* =========================
+   MOBILE – UKRYJ TEKST
+========================= */
+@media (max-width: 850px) {
+  .header-title {
+    display: none;
+  }
+  .header-logo{
+    left: 30%;
+  }
+
+}
+
+/* AKTYWNY LINK */
+.nav a.active {
+  background: #2563eb;
+  color: white;
+}

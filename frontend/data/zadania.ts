@@ -44,7 +44,7 @@ export const zadania = [
     showSolution: true,
     solutionText: "x² - 4 = 0 → x² = 4 → x = ±2",
     solutionVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    isPremium: false
+    isPremium: true
   },
   {
     id: 3,

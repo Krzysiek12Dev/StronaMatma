@@ -6,7 +6,7 @@ interface SidebarProps {
   setSelectedDzial: (dzial: string) => void;
   setSelectedLevel: (level: string) => void;
   isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
+  onClose: () => void; // zamiast setIsOpen
 }
 
 export default function Sidebar({
@@ -17,13 +17,13 @@ export default function Sidebar({
   setSelectedDzial,
   setSelectedLevel,
   isOpen,
-  setIsOpen
+  onClose
 }: SidebarProps) {
   return (
     <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
       <div className="sidebar-header">
         {/* <h3>Filtry</h3> */}
-        <button className="button-close" onClick={() => setIsOpen(false)}>×</button>
+        <button className="button-close" onClick={onClose}>×</button>
       </div>
 
       <div className="sidebar-section">

@@ -1,3 +1,6 @@
+/* =========================
+   SIDEBAR – BAZA
+========================= */
 .sidebar {
   position: fixed;
   top: 0;
@@ -9,18 +12,23 @@
   padding: 16px;
   overflow-y: auto;
   z-index: 1000;
+
+  /* ukrycie domyślnie */
   transform: translateX(-100%);
   transition: transform 0.3s ease;
 }
 
+/* OTWARTY */
 .sidebar.open {
   transform: translateX(0);
 }
 
+/* ZAMKNIĘTY */
 .sidebar.closed {
   transform: translateX(-100%);
 }
 
+/* HEADER SIDEBARU */
 .sidebar-header {
   display: flex;
   justify-content: space-between;
@@ -28,18 +36,21 @@
   margin-bottom: 16px;
 }
 
-.sidebar h3 {
+.sidebar-header h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
+  color: #2563eb;
 }
 
+/* PRZYCISK ZAMKNIĘCIA */
 .button-close {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
 }
 
+/* SEKCJE FILTRÓW */
 .sidebar-section {
   margin-bottom: 20px;
 }
@@ -59,30 +70,37 @@
   background: #f9fafb;
   color: #2563eb;
   cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
 
 .sidebar button.active {
   background: #2563eb;
-  color: white;
+  color: #fff;
   border-color: #2563eb;
 }
 
+/* HAMBURGER */
 .hamburger {
   position: fixed;
   top: 16px;
   left: 16px;
   z-index: 1100;
   background: #2563eb;
-  color: white;
+  color: #fff;
   border: none;
   padding: 10px 12px;
   border-radius: 6px;
   cursor: pointer;
+
+  display: block; /* zawsze widoczny jeśli sidebar jest zamknięty */
 }
 
-/* Responsywność */
+/* Na duże ekrany możemy zmienić pozycję hamburgera */
 @media (min-width: 768px) {
-  .sidebar {
-    width: 280px;
+  .hamburger {
+    top: 1.5%;
+    left: 28px; /* po prawej stronie sidebaru jeśli jest otwarty */
   }
 }
+
+
