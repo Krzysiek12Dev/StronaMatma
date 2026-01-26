@@ -33,7 +33,7 @@ export const zadania = [
   },
   {
     id: 2,
-    dzial: "Algebra",
+    dzial: "algebra",
     level: "Liceum",
     egzamin: "Matura",
     rok: 2023,
