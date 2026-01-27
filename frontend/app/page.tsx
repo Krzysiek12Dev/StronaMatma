@@ -9,6 +9,8 @@ import { zadania } from "../data/zadania";
 import "../styles/buttons.css";
 import "../styles/cards.css";
 import "../styles/sidebar.css";
+import { useAuth } from "@/components/AuthProvider";
+
 
 interface User {
   name: string;
@@ -23,6 +25,17 @@ export default function Page() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // domyślnie otwarty na dużych ekranach
 
   /* ------------------ LOGOWANIE ------------------ */
+  /* teraz ma być tak */
+
+  
+//   const { login } = useAuth();
+
+// login({
+//   email: "user@test.pl",
+//   isPremium: true, // albo false
+// });
+
+
   useEffect(() => {
     const saved = localStorage.getItem("user");
     if (saved) setUser(JSON.parse(saved));

@@ -1,0 +1,163 @@
+/* =========================
+   TEST – PYTANIE
+========================= */
+
+.test-question {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.test-question p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   OBRAZEK W TREŚCI
+========================= */
+
+.test-question img {
+  display: block;
+  max-width: 50%;      /* 🔑 dokładnie to, o co prosiłeś */
+  margin: 16px auto;   /* wyśrodkowanie */
+  border-radius: 12px;
+}
+
+/* =========================
+   ODPOWIEDZI
+========================= */
+
+.test-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.test-option {
+  background: #f6f7f9;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.test-option:hover {
+  background: #e9ecf2;
+  transform: translateY(-1px);
+}
+
+.test-option:active {
+  background: #dfe3eb;
+  transform: scale(0.99);
+}
+
+/* =========================
+   POSTĘP TESTU
+========================= */
+
+.test-progress {
+  text-align: center;
+  margin-bottom: 16px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* =========================
+   WYNIK
+========================= */
+
+.test-result {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.test-result h2 {
+  margin-bottom: 12px;
+}
+
+/* =========================
+   REVIEW
+========================= */
+
+.review-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.review-question {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.review-image {
+  max-width: 50%;
+  display: block;
+  margin: 12px auto;
+}
+
+.review-options {
+  list-style: none;
+  padding: 0;
+}
+
+.review-option {
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background: #f4f4f5;
+}
+
+.review-option.correct {
+  background: #dcfce7;
+  color: #166534;
+  font-weight: 600;
+}
+
+.review-option.wrong {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.solution-box {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+
+.solution-video {
+  width: 100%;
+  height: 280px;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: none;
+}
+
+.premium-lock {
+  margin-top: 12px;
+  padding: 16px;
+  background: #fff7ed;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.button-return-test{
+ padding: 5px;
+ color: white;
+  background-color: #3b82f6;
+}

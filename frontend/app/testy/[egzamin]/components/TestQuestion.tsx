@@ -1,9 +1,21 @@
+"use client";
+import "../styles/tests.css";
+
+interface Zadanie {
+  question: string;
+  options: string[];
+  correct: number;
+  image?: string;
+}
+
 interface Props {
-  zadanie: Zadanie;
+  zadanie?: Zadanie;
   onAnswer: (index: number) => void;
 }
 
 export default function TestQuestion({ zadanie, onAnswer }: Props) {
+  if (!zadanie) return null; // 🔑 KLUCZOWE
+
   return (
     <div className="card" style={{ padding: 16 }}>
       <p>{zadanie.question}</p>
@@ -18,13 +30,12 @@ export default function TestQuestion({ zadanie, onAnswer }: Props) {
 
       <ul>
         {zadanie.options.map((opt, i) => (
-          <li key={i}>
-            <button
-              className="test-option"
-              onClick={() => onAnswer(i)}
-            >
-              {opt}
-            </button>
+          <li
+            key={i}
+            style={{ marginBottom: 8, cursor: "pointer" }}
+            onClick={() => onAnswer(i)}
+          >
+            {opt}
           </li>
         ))}
       </ul>

@@ -1,36 +1,41 @@
 "use client";
+import "../styles/dotest.css";
 
-import { FC } from "react";
-
-interface TestQuestionProps {
+interface Zadanie {
   question: string;
   options: string[];
-  selectedOption: number | null;
-  onSelectOption: (index: number) => void;
+  correct: number;
+  image?: string;
 }
 
-const TestQuestion: FC<TestQuestionProps> = ({
-  question,
-  options,
-  selectedOption,
-  onSelectOption
-}) => {
+interface Props {
+  zadanie?: Zadanie;
+  onAnswer: (index: number) => void;
+}
+
+export default function TestQuestion({ zadanie, onAnswer }: Props) {
+  if (!zadanie) return null;
+
   return (
-    <div className="card">
-      <p style={{ fontWeight: 600 }}>{question}</p>
-      <div style={{ marginTop: "12px", display: "flex", flexDirection: "column", gap: "8px" }}>
-        {options.map((opt, i) => (
-          <button
+    <div className="test-question">
+      <p>{zadanie.question}</p>
+
+      {zadanie.image && (
+        <img src={zadanie.image} alt="Obrazek" />
+      )}
+
+      <ul className="test-options">
+        {zadanie.options.map((opt, i) => (
+          <li
             key={i}
-            className={`button-primary ${selectedOption === i ? "active" : ""}`}
-            onClick={() => onSelectOption(i)}
+            className="test-option"
+            onClick={() => onAnswer(i)}
           >
             {opt}
-          </button>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
-};
+}
 
-export default TestQuestion;

@@ -4,30 +4,53 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import TestQuestion from "@/components/TestQuestion";
+import TestReview from "@/components/TestReview";
 import { zadania } from "@/data/zadania";
 import "@/styles/tests.css";
+import "@/styles/dotest.css";
+import { useAuth } from "@/components/AuthProvider";
+
+
+
+const EGZAMIN_MAP: Record<string, string> = {
+  "egzamin-8klasisty": "Egzamin ósmoklasisty",
+  "matura-podstawowa": "Matura",
+  "matura-rozszerzona": "Matura"
+};
 
 export default function TestPage() {
   const params = useParams();
   const router = useRouter();
 
-  const egzamin = params.egzamin as string;
-  const dzial = params.dzial as string;
+  const egzaminSlug = params.egzamin as string;
+  const dzialSlug = params.dzial as string;
+
+  const egzaminName = EGZAMIN_MAP[egzaminSlug];
 
   const [questions, setQuestions] = useState<any[]>([]);
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [finished, setFinished] = useState(false);
 
-  // 🔁 LOSOWANIE TYLKO RAZ
+  // 🔐 tymczasowo – później podepniesz auth
+ // const isPremium = false;
+ const { user } = useAuth();
+const isPremium = user?.isPremium ?? false;
+
+
   useEffect(() => {
-    const filtered = zadania.filter(
-      z => z.egzamin === egzamin && z.dzial.toLowerCase() === dzial
+    const filtered = zadania.filter(z =>
+      z.egzamin === egzaminName &&
+      z.dzial.toLowerCase() === dzialSlug.toLowerCase()
     );
 
     const shuffled = [...filtered].sort(() => Math.random() - 0.5);
-    setQuestions(shuffled.slice(0, 5)); // 🔑 DOKŁADNIE 5 PYTAŃ
-  }, [egzamin, dzial]);
+
+    setQuestions(shuffled.slice(0, 5));
+    setCurrent(0);
+    setAnswers([]);
+    setFinished(false);
+  }, [egzaminSlug, dzialSlug, egzaminName]);
 
   const handleAnswer = (index: number) => {
     const newAnswers = [...answers, index];
@@ -72,19 +95,29 @@ export default function TestPage() {
             />
           </>
         ) : (
-          <div className="test-result">
-            <h2>Wynik</h2>
-            <p>
-              {score} / {questions.length}
-            </p>
+          <>
+            {/* WYNIK */}
+            <div className="test-result">
+              <h2>Wynik</h2>
+              <p>
+                {score} / {questions.length}
+              </p>
 
-            <button
-              className="button-primary"
-              onClick={() => router.push("/testy")}
-            >
-              Wróć do testów
-            </button>
-          </div>
+              <button
+                className="button-return-test"
+                onClick={() => router.push("/testy")}
+              >
+                Wróć do testów
+              </button>
+            </div>
+          <p></p>
+            {/* PODGLĄD PYTAŃ + ROZWIĄZAŃ */}
+            <TestReview
+              questions={questions}
+              answers={answers}
+              isPremium={isPremium}
+            />
+          </>
         )}
       </main>
     </>

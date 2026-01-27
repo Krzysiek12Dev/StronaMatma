@@ -32,6 +32,29 @@ export const zadania = [
     isPremium: false
   },
   {
+  id: 1324,
+
+  egzaminSlug: "matura-podstawowa",
+  egzaminName: "Matura – poziom podstawowy",
+
+  dzialSlug: "algebra",
+  dzialName: "Algebra",
+
+  level: "Liceum",
+  rok: 2024,
+  miesiac: "grudzien",
+
+  question: "Oblicz pole trójkąta o podstawie 4 cm i wysokości 3 cm",
+  image: "/rysunki/okrag.png",
+  options: ["10", "6", "15", "20"],
+  correct: 1,
+
+  showSolution: true,
+  solutionText: "Pole = 1/2 * 4 * 3 = 6 cm²",
+  solutionVideo: "https://www.youtube.com/embed/LtE7w6cnkkg",
+  isPremium: false
+},
+  {
     id: 2,
     dzial: "algebra",
     level: "Liceum",
