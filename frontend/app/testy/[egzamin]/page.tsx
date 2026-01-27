@@ -35,7 +35,7 @@ export default function DzialyPage() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <main className="tests-container">
         <h1 className="tests-title">Wybierz dział</h1>

@@ -6,7 +6,7 @@ interface SidebarProps {
   setSelectedDzial: (dzial: string) => void;
   setSelectedLevel: (level: string) => void;
   isOpen: boolean;
-  onClose: () => void; // zamiast setIsOpen
+  onClose: () => void;
 }
 
 export default function Sidebar({
@@ -22,15 +22,14 @@ export default function Sidebar({
   return (
     <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
       <div className="sidebar-header">
-        {/* <h3>Filtry</h3> */}
         <button className="button-close" onClick={onClose}>×</button>
       </div>
 
       <div className="sidebar-section">
         <h4>Działy</h4>
-        {dzialy.map(dz => (
+        {dzialy.map((dz) => (
           <button
-            key={dz}
+            key={`dzial-${dz}`}
             className={dz === selectedDzial ? "active" : ""}
             onClick={() => setSelectedDzial(dz)}
           >
@@ -41,9 +40,9 @@ export default function Sidebar({
 
       <div className="sidebar-section">
         <h4>Poziomy</h4>
-        {levels.map(lv => (
+        {levels.map((lv) => (
           <button
-            key={lv}
+            key={`level-${lv}`}
             className={lv === selectedLevel ? "active" : ""}
             onClick={() => setSelectedLevel(lv)}
           >

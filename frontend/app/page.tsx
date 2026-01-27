@@ -69,7 +69,7 @@ export default function Page() {
   return (
     <>
       {/* HEADER */}
-      <Header onToggleSidebar={() => setIsSidebarOpen(prev => !prev)} />
+      {/* <Header onToggleSidebar={() => setIsSidebarOpen(prev => !prev)} /> */}
 
       <main className="container" style={{ display: "flex", gap: "24px" }}>
        {/* HAMBURGER do otwierania sidebaru */}

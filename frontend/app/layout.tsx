@@ -3,6 +3,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
+import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,11 +22,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable}`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <AuthProvider>
-          {children}
+          {/* GLOBALNY HEADER */}
+          <Header />
+
+          {/* TREŚĆ STRON */}
+          <main style={{ minHeight: "calc(100vh - 80px)" }}>
+            {children}
+          </main>
+
+          {/* TU W PRZYSZŁOŚCI:
+              <Footer />
+              <ToastProvider />
+              <ModalRoot />
+          */}
         </AuthProvider>
       </body>
     </html>

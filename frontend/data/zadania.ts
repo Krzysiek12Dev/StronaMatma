@@ -29,7 +29,7 @@ export const zadania = [
     showSolution: true,
     solutionText: "Pole = 1/2 * 4 * 3 = 6 cm²",
     solutionVideo: "https://www.youtube.com/embed/LtE7w6cnkkg",
-    isPremium: false
+    isPremium: true
   },
   {
   id: 1324,

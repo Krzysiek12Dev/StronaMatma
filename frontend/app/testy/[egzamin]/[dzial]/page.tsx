@@ -70,7 +70,7 @@ const isPremium = user?.isPremium ?? false;
   if (!questions.length) {
     return (
       <>
-        <Header />
+        {/* <Header /> */}
         <main className="tests-container">
           <p>Brak pytań dla tego działu.</p>
         </main>
@@ -80,7 +80,7 @@ const isPremium = user?.isPremium ?? false;
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <main className="tests-container">
         {!finished ? (

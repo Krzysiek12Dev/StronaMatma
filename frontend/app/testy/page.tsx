@@ -31,7 +31,7 @@ const EGZAMINY = [
 export default function TestyPage() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <main className="tests-container">
         <h1 className="tests-title">Testy sprawdzające</h1>
