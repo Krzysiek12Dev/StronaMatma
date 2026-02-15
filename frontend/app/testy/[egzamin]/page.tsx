@@ -15,7 +15,8 @@ const DZIALY: Record<string, { id: string; title: string }[]> = {
   "matura-podstawowa": [
     { id: "algebra", title: "Algebra" },
     { id: "analiza", title: "Analiza matematyczna" },
-    { id: "geometria", title: "Geometria" }
+    { id: "geometria", title: "Geometria" },
+    { id: "liczby-rzeczywiste", title: "Liczby rzeczywiste" },
   ],
   "matura-rozszerzona": [
     { id: "algebra", title: "Algebra" },

@@ -37,6 +37,16 @@ export default function TestPage() {
  const { user } = useAuth();
 const isPremium = user?.isPremium ?? false;
 
+console.log("dzialSlug z URL:", dzialSlug);
+
+zadania.forEach(z => {
+  console.log({
+    id: z.id,
+    dzial: z.dzial,
+    dzialSlug: z.dzialSlug
+  });
+});
+
 
   useEffect(() => {
     const filtered = zadania.filter(z =>
